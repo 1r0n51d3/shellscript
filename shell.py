@@ -8,7 +8,7 @@ password = 'anonymous'
 def login():
     global s 
     s.send('login:>')
-    pwd = s.recv()
+    pwd = s.recv(1024)
     if pwd.strip() != password:
         login()
     else:
@@ -16,7 +16,7 @@ def login():
         shell()
 
 def shell():
-    while true:
+    while True:
         data = s.recv(1024)
         if data.strip() == 'kill' :
           break
